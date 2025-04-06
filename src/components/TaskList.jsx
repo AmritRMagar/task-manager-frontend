@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import AddTask from './AddTask';
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
@@ -12,7 +13,6 @@ const TaskList = () => {
       console.error('Failed to fetch tasks:', err);
     }
   };
-  
 
   useEffect(() => {
     fetchTasks();
@@ -21,6 +21,7 @@ const TaskList = () => {
   return (
     <div>
       <h2>Task List 📋</h2>
+      <AddTask onTaskAdded={fetchTasks} />
       <ul>
         {tasks.map(task => (
           <li key={task.id}>
